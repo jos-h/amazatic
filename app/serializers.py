@@ -1,7 +1,19 @@
 from rest_framework.serializers import ModelSerializer, Serializer, CharField
-from .models import User
+from .models import User, University, Program
 from django.utils.text import gettext_lazy as _
 from rest_framework_simplejwt.tokens import RefreshToken, TokenError
+
+
+class UniversitySerializer(ModelSerializer):
+    class Meta:
+        model = University
+        fields = '__all__'
+
+
+class ProgramSerializer(ModelSerializer):
+    class Meta:
+        model = Program
+        fields = '__all__'
 
 
 class UserSerializer(ModelSerializer):

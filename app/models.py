@@ -32,7 +32,7 @@ class User(AbstractBaseUser, PermissionsMixin):
 class University(models.Model):
     rank = models.IntegerField()
     name = models.CharField(max_length=256)
-    course = models.CharField(max_length=256)
+    course = models.CharField(max_length=256, null=True, blank=True)
     link_program_highlights = models.URLField()
     city = models.CharField(max_length=256)
     country = models.CharField(max_length=256)
@@ -43,13 +43,13 @@ class University(models.Model):
 
 class Program(models.Model):
     university = models.ForeignKey(University, on_delete=models.CASCADE)
-    start_month = models.CharField(max_length=256)
-    avg_work_exp = models.IntegerField()
-    avg_student_age = models.IntegerField()
-    women_students = models.IntegerField()
-    avg_salary = models.IntegerField()
+    start_month = models.CharField(max_length=256, null=True, blank=True)
+    avg_work_exp = models.IntegerField(null=True, blank=True)
+    avg_student_age = models.IntegerField(null=True, blank=True)
+    women_students = models.IntegerField(null=True, blank=True)
+    avg_salary = models.IntegerField(null=True, blank=True)
     scholarship = models.BooleanField(default="No")
-    accreditations = models.CharField(max_length=10)
+    accreditations = models.CharField(max_length=10, null=True, blank=True)
 
     def __str__(self):
         return f"{self.university.name}-{self.start_month}"

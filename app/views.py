@@ -6,7 +6,7 @@ from rest_framework_simplejwt.serializers import TokenObtainPairSerializer, Toke
 from rest_framework.generics import GenericAPIView
 from .models import User
 from rest_framework_simplejwt.tokens import RefreshToken
-from .serializers import UserSerializer, RefreshTokenSerializer
+from .serializers import UserSerializer
 
 
 class UserRegisterView(APIView):
@@ -45,7 +45,7 @@ class UserLoginView(APIView):
 
 
 class UserLogoutView(GenericAPIView):
-    serializer_class = RefreshTokenSerializer
+    # serializer_class = RefreshTokenSerializer
 
     def post(self, request, *args):
         user = request.user
