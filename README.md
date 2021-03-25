@@ -11,3 +11,4 @@ Steps to run the application
       pip install -r requirements.txt
 6. I have tested the api using postman manually
 7. Run the app on local server python manage.py runserver
+8. Seed_data.py file present inside the app/management/command folder to create the seed data for admin users using following command python manage.py seed_data.py
