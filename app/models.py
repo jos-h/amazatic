@@ -2,6 +2,8 @@ from django.contrib.auth.models import AbstractBaseUser
 from django.contrib.auth.models import PermissionsMixin
 from django.core.exceptions import ValidationError
 from django.db import models
+from django.db.models.signals import post_save
+from django.dispatch import receiver
 from django.utils.translation import gettext_lazy as _
 
 from .managers import UserManager
@@ -27,6 +29,13 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     def __str__(self):
         return self.email
+
+
+@receiver(post_save, sender=User)
+def save_password(sender, instance, created, **kwargs):
+    if created:
+        instance.set_password(instance.password)
+        instance.save()
 
 
 class University(models.Model):

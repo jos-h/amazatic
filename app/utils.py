@@ -54,9 +54,9 @@ class Scrape:
                         link = link[0]
                         url = self.new_url + "/" + link
                         each.update(link_program_highlights=url+"#profile-avail-program")
-                # serializer = UniversitySerializer(each)
-                # if serializer.is_valid(raise_exception=True):
-                #     serializer.save()
+                serializer = UniversitySerializer(each)
+                if serializer.is_valid(raise_exception=True):
+                    serializer.save()
                 self.fetch_program_highlights(url, each)
                 break
         except Exception as e:
